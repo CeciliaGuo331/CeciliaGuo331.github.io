@@ -39,7 +39,7 @@ jobs:
         run: npm run build:main
 
       - name: Build docs site
-        run: npx vitepress build
+        run: npm run docs:build
         working-directory: ./docs
 
       - name: Combine build outputs
