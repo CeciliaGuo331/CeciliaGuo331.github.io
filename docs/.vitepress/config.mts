@@ -29,7 +29,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Content', link: '/' },
-      { text: 'Home', link: '../' },
+      { text: 'Home', link: 'https://ceciliaguo331.github.io/' },
     ],
 
     sidebar: [
