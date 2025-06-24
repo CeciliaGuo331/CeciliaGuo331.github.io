@@ -11,57 +11,27 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: |
-            package-lock.json
-            docs/package-lock.json
-
-      - name: Install dependencies
-        run: |
-          npm install
-          npm install --prefix docs
-
-      - name: Clean previous build
-        run: npm run clean
-
-      - name: Build main site
-        run: npm run build:main
-
-      - name: Build docs site
-        run: npm run docs:build
-        working-directory: ./docs
-
-      - name: Move docs build to dist
-        run: |
-          mkdir -p dist/docs
-          mv docs/.vitepress/dist/* dist/docs/
-
-      - name: Add .nojekyll file
-        run: touch dist/.nojekyll
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: 'dist'
-
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Create .nojekyll file
+        run: touch .nojekyll
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
