@@ -3,3 +3,5 @@
 
 - [ ] index.html 展示最新的一篇文章
 - [ ] docs 首页文章分类；按时间排序；自动生成docs/index.md文章列表
+
+- [ ] cdn服务器
