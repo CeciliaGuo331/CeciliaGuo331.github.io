@@ -20,7 +20,6 @@ export default defineConfig({
   // Markdown 配置
   markdown: {
     lineNumbers: true,
-    math: true,
     image: {
       lazyLoading: true
     }
