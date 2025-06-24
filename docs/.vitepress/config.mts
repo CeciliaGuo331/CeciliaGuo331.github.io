@@ -9,6 +9,7 @@ export default defineConfig({
 
   // 构建配置
   base: '/docs/',
+  outDir: '../dist/docs',
   lastUpdated: true,
   cleanUrls: true,
   ignoreDeadLinks: true,

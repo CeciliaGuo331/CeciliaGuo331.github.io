@@ -39,11 +39,9 @@ jobs:
         run: npm run build:main
 
       - name: Build docs site
-        run: npx vitepress build . --base /docs/
+        run: npm run docs:build
         working-directory: ./docs
 
-      - name: Combine build outputs
-        run: npx copyfiles -u 3 "docs/.vitepress/dist/**/*" dist/docs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
