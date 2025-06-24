@@ -1,0 +1,31 @@
+{
+  "name": "ceciliaguo331.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build:main": "copyfiles index.html aboutme.html friends.html \"css/**/*\" \"js/**/*\" \"assets/**/*\" \"avatars/**/*\" dist",
+    "build:docs": "npm --prefix docs run docs:build",
+    "build": "npm run clean && npm run build:main && npm run build:docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CeciliaGuo331/CeciliaGuo331.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CeciliaGuo331/CeciliaGuo331.github.io/issues"
+  },
+  "homepage": "https://github.com/CeciliaGuo331/CeciliaGuo331.github.io#readme",
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "rimraf": "^6.0.1"
+  }
+}
