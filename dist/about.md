@@ -1,2 +1,0 @@
-- 北京大学经济学院2024级本科生
-- ceciliaguo331@gmail.com
