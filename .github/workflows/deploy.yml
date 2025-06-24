@@ -32,11 +32,15 @@ jobs:
           npm install
           npm install --prefix docs
 
-      - name: Build site
-        run: |
-          npm run clean
-          npm run build:main
-          npm --prefix docs run docs:build
+      - name: Clean previous build
+        run: npm run clean
+
+      - name: Build main site
+        run: npm run build:main
+
+      - name: Build docs site
+        run: npm run docs:build
+        working-directory: ./docs
 
       - name: Combine build outputs
         run: npx copyfiles -u 3 "docs/.vitepress/dist/**/*" dist/docs
