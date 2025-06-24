@@ -42,6 +42,10 @@ jobs:
         run: npm run docs:build
         working-directory: ./docs
 
+      - name: Inspect build artifact
+        run: |
+          ls -R dist
+          grep -r "assets" dist/docs/ || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
