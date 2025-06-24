@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p docs/.vitepress)",
+      "Bash(rm -rf articles articles.html)",
+      "Bash(npm install)",
+      "Bash(npm run docs:dev)",
+      "Bash(mv docs/.vitepress/config.js docs/.vitepress/config.mjs)",
+      "Bash(git restore index.html)",
+      "Bash(git checkout -- articles.html)",
+      "Bash(git checkout -- articles)"
+    ],
+    "deny": []
+  }
+}
