@@ -32,6 +32,21 @@ export default defineConfig({
       { text: 'Home', link: '../' },
     ],
 
+    sidebar: [
+      {
+        text: 'Idea',
+        items: [
+          { text: '2024', link: '/content/idea/2024' }
+        ]
+      },
+      {
+        text: 'Note',
+        items: [
+          { text: 'Default', link: '/content/note/default' }
+        ]
+      }
+    ],
+
     socialLinks: [
       { icon: 'github', link: 'https://github.com/CeciliaGuo331' }
     ]

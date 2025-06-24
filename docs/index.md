@@ -17,9 +17,8 @@ hero:
 
 features:
   - title: 2024随想
-    link?: string
-    linkText?: 与命运为侣一道浮沉
-    details: 2024.12.31
+    link: /content/idea/2024
+    details: 与命运为侣一道浮沉 - 2024.12.31
   - title: Feature B
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - title: Feature C
