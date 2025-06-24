@@ -8,8 +8,7 @@ export default defineConfig({
   lang: 'zh-CN',
 
   // 构建配置
-  base: './',
-  outDir: '../dist/docs',
+  base: '/docs/',
   lastUpdated: true,
   cleanUrls: true,
   ignoreDeadLinks: true,

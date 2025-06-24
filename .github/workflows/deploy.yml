@@ -42,6 +42,11 @@ jobs:
         run: npm run docs:build
         working-directory: ./docs
 
+      - name: Move docs build to dist
+        run: |
+          mkdir -p dist/docs
+          mv docs/.vitepress/dist/* dist/docs/
+
       - name: Add .nojekyll file
         run: touch dist/.nojekyll
 
