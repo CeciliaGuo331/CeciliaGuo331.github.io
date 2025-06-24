@@ -7,21 +7,14 @@ hero:
   text: "aq's days & nights"
   tagline: works and ideas
 
-  # actions:
-  #   - theme: brand
-  #     text: Markdown Examples
-  #     link: /markdown-examples
-  #   - theme: alt
-  #     text: API Examples
-  #     link: /api-examples
-
 features:
   - title: 2024随想
-    link: /content/idea/2024
-    details: 与命运为侣一道浮沉 - 2024.12.31
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    link: /content/idea/2024.md
+    linkText: 与命运为侣一道浮沉
+    details: 2024.12.31
+  - title: 模版
+    link: /content/note/default.md
+    linkText: 模版
+    details: 2025.06.24
 ---
 
