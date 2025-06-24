@@ -23,16 +23,23 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            docs/package-lock.json
 
-      - name: Install root dependencies
-        run: npm install
+      - name: Install dependencies
+        run: |
+          npm install
+          npm install --prefix docs
 
-      - name: Install docs dependencies
-        run: npm install --prefix docs
+      - name: Build site
+        run: |
+          npm run clean
+          npm run build:main
+          npm --prefix docs run docs:build
 
-
-      - name: Build
-        run: npm run build
+      - name: Combine build outputs
+        run: npx copyfiles -u 3 "docs/.vitepress/dist/**/*" dist/docs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
