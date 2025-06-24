@@ -3,9 +3,10 @@
 layout: home
 
 hero:
-  name: "Sparkles"
-  text: "aq's Blogs"
-  tagline: My great project tagline
+  name: "Content"
+  text: "aq's days & nights"
+  tagline: works and ideas
+
   # actions:
   #   - theme: brand
   #     text: Markdown Examples
@@ -15,8 +16,10 @@ hero:
   #     link: /api-examples
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 2024随想
+    link?: string
+    linkText?: 与命运为侣一道浮沉
+    details: 2024.12.31
   - title: Feature B
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - title: Feature C

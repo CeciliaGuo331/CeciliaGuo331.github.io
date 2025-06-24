@@ -28,8 +28,8 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Articles', link: '/articles/' },
+      { text: 'Content', link: '/' },
+      { text: 'Home', link: '../' },
     ],
 
     socialLinks: [
