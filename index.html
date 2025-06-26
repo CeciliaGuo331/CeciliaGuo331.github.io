@@ -57,16 +57,8 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
-                <!-- Post preview-->
-                <div class="post-preview">
-                    <a href="docs/content/idea/2024">
-                        <h2 class="post-title">2024随想</h2>
-                        <h3 class="post-subtitle">与命运为侣一道浮沉</h3>
-                    </a>
-                    <p class="post-meta">
-                        2024.12.31
-                    </p>
-                </div>
+                <!-- Posts container -->
+                <div id="posts-container"></div>
                 <!-- Divider-->
                 <hr class="my-4" />
                 <!-- Pager-->
@@ -102,6 +94,87 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+    <!-- Custom script to fetch posts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('https://ceciliaguo331.github.io/docs/posts.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(posts => {
+                    const postsContainer = document.getElementById('posts-container');
+                    const pagerLink = document.querySelector('.d-flex.justify-content-end.mb-4 a');
+                    // Sort posts by date just in case they aren't already
+                    const sortedPosts = posts.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date));
+                    const recentPosts = sortedPosts.slice(0, 3); // Display latest 3 posts
+
+                    if (!postsContainer) return;
+                    
+                    if (recentPosts.length === 0) {
+                        postsContainer.innerHTML = '<p>No recent posts available.</p>';
+                         if(pagerLink) pagerLink.style.display = 'none';
+                        return;
+                    }
+
+                    // Update the "my Sparkles" button link
+                    if (pagerLink && recentPosts.length > 0) {
+                        const firstPostUrl = recentPosts[0].url.startsWith('/') 
+                            ? `/docs${recentPosts[0].url.replace(/\.html$/, '')}`
+                            : `/docs/${recentPosts[0].url.replace(/\.html$/, '')}`;
+                        pagerLink.href = firstPostUrl;
+                    }
+
+                    postsContainer.innerHTML = ''; // Clear any existing content
+
+                    recentPosts.forEach((post, index) => {
+                        const postPreview = document.createElement('div');
+                        postPreview.className = 'post-preview';
+
+                        const postLink = document.createElement('a');
+                         const postUrl = post.url.startsWith('/')
+                            ? `/docs${post.url.replace(/\.html$/, '')}`
+                            : `/docs/${post.url.replace(/\.html$/, '')}`;
+                        postLink.href = postUrl;
+
+                        const title = document.createElement('h2');
+                        title.className = 'post-title';
+                        title.textContent = post.frontmatter.title;
+                        postLink.appendChild(title);
+
+                        const subtitle = document.createElement('h3');
+                        subtitle.className = 'post-subtitle';
+                        subtitle.textContent = post.frontmatter.details;
+                        postLink.appendChild(subtitle);
+                        
+                        const meta = document.createElement('p');
+                        meta.className = 'post-meta';
+                        meta.textContent = `Posted on ${new Date(post.frontmatter.date).toLocaleDateString()}`;
+                         
+                        postPreview.appendChild(postLink);
+                        postPreview.appendChild(meta);
+
+                        postsContainer.appendChild(postPreview);
+
+                        // Add a divider after each post except the last one
+                        if (index < recentPosts.length - 1) {
+                            const divider = document.createElement('hr');
+                            divider.className = 'my-4';
+                            postsContainer.appendChild(divider);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching posts:', error);
+                    const postsContainer = document.getElementById('posts-container');
+                    if (postsContainer) {
+                        postsContainer.innerHTML = '<p>Could not load recent posts. Please try again later.</p>';
+                    }
+                });
+        });
+    </script>
 </body>
 
 </html>
